@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lê Chí Kha | Data Science & AI Engineer Fresher Portfolio</title>
+  <title>Lê Chí Kha | Data Analytics, BI & AI Portfolio</title>
   <meta name="description"
-    content="Portfolio cá nhân của Lê Chí Kha - Sinh viên chuyên ngành Khoa học dữ liệu, ứng tuyển vị trí Thực tập sinh / Fresher Data Science & AI Engineer." />
+    content="Portfolio của Lê Chí Kha, tốt nghiệp Công nghệ thông tin chuyên ngành Khoa học dữ liệu. Dự án Data Analytics, Power BI, Machine Learning và AI." />
   <meta name="keywords"
-    content="Lê Chí Kha, Data Science, Machine Learning, AI Engineer, Deep Learning, Portfolio, Churn Prediction, Python" />
+    content="Lê Chí Kha, Data Analyst, BI Analyst, Data Science, Machine Learning, Power BI, Python, SQL, Portfolio" />
   <meta name="author" content="Lê Chí Kha" />
 
   <!-- Google Fonts -->
@@ -160,30 +160,137 @@
       pointer-events: none;
     }
 
-    /* Print Styles for CV Modal */
+    /* ==================== PRINT STYLES FOR CV (PDF / PRINTER) ==================== */
     @media print {
-      body * {
-        visibility: hidden;
+      @page {
+        size: A4 portrait;
+        margin: 12mm 15mm 12mm 15mm;
       }
 
-      #cvModalContent,
-      #cvModalContent * {
-        visibility: visible;
+      /* 1. Reset môi trường in: nền trắng, chữ đen, kích thước tự nhiên, không cắt trang */
+      html,
+      body {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        background-image: none !important;
+        color: #0f172a !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
-      #cvModalContent {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
-        padding: 20px;
-        background: white !important;
-        color: black !important;
-      }
-
-      .no-print {
+      body::before,
+      body::after {
         display: none !important;
+      }
+
+      /* 2. ẨN TOÀN BỘ WEBSITE (Header, Main, Sections, Footer, Glows, Toast, Modal khác) */
+      body>*:not(#cvModal) {
+        display: none !important;
+      }
+
+      /* 3. ĐƯA CV MODAL VỀ DẠNG KHỐI BÌNH THƯỜNG TRÊN TRANG GIẤY (Xóa bỏ fixed, inset, backdrop, scroll) */
+      #cvModal {
+        display: block !important;
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        overflow: visible !important;
+        z-index: auto !important;
+      }
+
+      #cvModal>div {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+
+      /* 4. Ẩn thanh header và footer của modal (nút in, nút đóng) */
+      .no-print,
+      #cvModal .no-print {
+        display: none !important;
+      }
+
+      /* 5. KHU VỰC NỘI DUNG CV - Hiển thị chuẩn A4, chữ rõ nét trên nền trắng */
+      #cvModalContent {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+      }
+
+      /* Màu chữ rõ nét, tương phản cao trên nền giấy trắng */
+      #cvModalContent h2 {
+        color: #0f172a !important;
+      }
+
+      #cvModalContent h3 {
+        color: #0f172a !important;
+        border-bottom: 1.5px solid #cbd5e1 !important;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      #cvModalContent h4 {
+        color: #0f172a !important;
+      }
+
+      #cvModalContent p,
+      #cvModalContent li,
+      #cvModalContent div,
+      #cvModalContent span {
+        color: #1e293b !important;
+      }
+
+      #cvModalContent .text-slate-600,
+      #cvModalContent .italic {
+        color: #475569 !important;
+      }
+
+      /* Quản lý ngắt trang mượt mà */
+      #cvModalContent section {
+        break-inside: auto;
+        page-break-inside: auto;
+        margin-bottom: 1.5rem !important;
+      }
+
+      #cvModalContent article {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 1rem !important;
+      }
+
+      #cvModalContent .grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
       }
     }
   </style>
@@ -227,9 +334,9 @@
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
         <a href="#about" class="hover:text-cyan-400 transition-colors">Giới thiệu</a>
         <a href="#playground" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-          <span>ML Playground</span>
+          <span>ML Demo</span>
           <span
-            class="px-1.5 py-0.5 text-[10px] font-mono bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/20">Live</span>
+            class="px-1.5 py-0.5 text-[10px] font-mono bg-amber-500/10 text-amber-300 rounded border border-amber-500/20">Demo</span>
         </a>
         <a href="#skills" class="hover:text-cyan-400 transition-colors">Kỹ năng</a>
         <a href="#projects" class="hover:text-cyan-400 transition-colors">Dự án</a>
@@ -248,7 +355,10 @@
         <!-- GitHub Profile Button -->
         <a href="https://github.com/lckhahn2904-cmd" target="_blank" rel="noopener noreferrer"
           class="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-cyan transition-all duration-300 flex items-center gap-2">
-          <i data-lucide="github" class="w-4 h-4"></i>
+          <svg class="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+          </svg>
           <span>GitHub</span>
         </a>
       </div>
@@ -267,8 +377,8 @@
       <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Giới thiệu</a>
       <a href="#playground" onclick="toggleMobileMenu()"
         class="block text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between">
-        <span>ML Playground</span>
-        <span class="px-2 py-0.5 text-xs font-mono bg-cyan-500/20 text-cyan-400 rounded">Live</span>
+        <span>ML Demo</span>
+        <span class="px-2 py-0.5 text-xs font-mono bg-amber-500/20 text-amber-300 rounded">Demo</span>
       </a>
       <a href="#skills" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Kỹ năng</a>
       <a href="#projects" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Dự án</a>
@@ -281,7 +391,10 @@
         </button>
         <a href="https://github.com/lckhahn2904-cmd" target="_blank" rel="noopener noreferrer"
           class="w-full py-2.5 text-sm font-medium rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white flex items-center justify-center gap-2">
-          <i data-lucide="github" class="w-4 h-4"></i>
+          <svg class="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+          </svg>
           <span>GitHub Profile</span>
         </a>
       </div>
@@ -304,7 +417,7 @@
                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>Sẵn sàng nhận việc Intern / Fresher Data Science & AI</span>
+            <span>Sẵn sàng nhận việc Intern / Fresher Data Analytics · BI · AI</span>
           </div>
 
           <!-- Headline -->
@@ -315,31 +428,33 @@
 
           <!-- Role & Summary -->
           <div class="text-xl sm:text-2xl font-semibold text-slate-300 flex items-center gap-2">
-            <span>Data Scientist</span>
+            <span>Data Analytics & BI</span>
             <span class="text-cyan-400">•</span>
-            <span>AI Engineer Fresher</span>
+            <span>Machine Learning</span>
           </div>
 
           <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-            Sinh viên chuyên ngành <strong class="text-white font-semibold">Khoa học dữ liệu (Data Science)</strong> với
-            đam mê chuyển hoá dữ liệu thô thành giá trị kinh doanh thực tiễn. Thành thạo phân tích dữ liệu chuyên sâu,
-            xây dựng mô hình <span class="text-cyan-300 font-medium">Machine Learning & Deep Learning</span>, thiết kế
-            pipeline dữ liệu tự động và trực quan hóa chuyên nghiệp.
+            Tốt nghiệp ngành <strong class="text-white font-semibold">Công nghệ thông tin, chuyên ngành Khoa học dữ
+              liệu</strong>.
+            Tôi có kinh nghiệm thực hành với Python, xử lý và phân tích dữ liệu, trực quan hóa bằng Power BI, cùng các
+            dự án <span class="text-cyan-300 font-medium">Machine Learning và chuỗi thời gian</span>. Portfolio này
+            tập hợp các dự án học thuật và sản phẩm thực hành, kèm phương pháp, kết quả và mã nguồn để nhà tuyển dụng
+            tiện đánh giá.
           </p>
 
-          <!-- Core Metrics Quick View -->
-          <div class="grid grid-cols-3 gap-4 pt-2 max-w-lg">
+          <!-- Portfolio facts: avoids unlinked performance claims -->
+          <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg">
             <div class="p-3.5 rounded-xl glass-card border border-slate-800">
-              <div class="text-2xl font-bold font-mono text-cyan-400">94.2%</div>
-              <div class="text-xs text-slate-400 mt-1">Model AUC-ROC cao nhất</div>
+              <div class="text-2xl font-bold font-mono text-cyan-400">06</div>
+              <div class="text-xs text-slate-400 mt-1">Dự án tiêu biểu</div>
             </div>
             <div class="p-3.5 rounded-xl glass-card border border-slate-800">
-              <div class="text-2xl font-bold font-mono text-purple-400">5+</div>
-              <div class="text-xs text-slate-400 mt-1">Dự án DS & AI hoàn thiện</div>
+              <div class="text-2xl font-bold font-mono text-purple-400">02</div>
+              <div class="text-xs text-slate-400 mt-1">Nhóm định hướng</div>
             </div>
             <div class="p-3.5 rounded-xl glass-card border border-slate-800">
-              <div class="text-2xl font-bold font-mono text-emerald-400">100K+</div>
-              <div class="text-xs text-slate-400 mt-1">Bản ghi đã làm sạch & EDA</div>
+              <div class="text-2xl font-bold font-mono text-emerald-400">01</div>
+              <div class="text-xs text-slate-400 mt-1">Demo tương tác</div>
             </div>
           </div>
 
@@ -348,7 +463,7 @@
             <a href="#playground"
               class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-glow-cyan transition-all flex items-center gap-2.5 group">
               <i data-lucide="sparkles" class="w-4 h-4 transition-transform group-hover:rotate-12"></i>
-              <span>Trải nghiệm ML Playground</span>
+              <span>Thử ML Demo</span>
             </a>
 
             <a href="#projects"
@@ -360,7 +475,7 @@
             <button onclick="openCvModal()"
               class="px-5 py-3.5 rounded-xl bg-transparent hover:bg-slate-800/50 text-slate-300 hover:text-white font-medium text-sm border border-slate-800 hover:border-slate-700 transition-all flex items-center gap-2">
               <i data-lucide="download" class="w-4 h-4 text-purple-400"></i>
-              <span>Tải CV (PDF)</span>
+              <span>In / Lưu CV PDF</span>
             </button>
           </div>
         </div>
@@ -415,11 +530,11 @@
 
                 <div class="pt-3 border-t border-slate-800/80">
                   <div class="flex items-center justify-between text-slate-400 text-xs">
-                    <span>Validation Score:</span>
-                    <span class="text-emerald-400 font-bold">98.5% Passion</span>
+                    <span>Portfolio Focus:</span>
+                    <span class="text-emerald-400 font-bold">Data · BI · AI</span>
                   </div>
                   <div class="w-full bg-slate-800 h-1.5 rounded-full mt-1.5 overflow-hidden">
-                    <div class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-full w-[98.5%] rounded-full"></div>
+                    <div class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-full w-full rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -429,11 +544,11 @@
                 class="px-5 py-3 bg-dark-900/60 border-t border-slate-800/70 flex items-center justify-between text-xs font-mono">
                 <span class="text-slate-400 flex items-center gap-1.5">
                   <i data-lucide="git-branch" class="w-3.5 h-3.5 text-cyan-400"></i>
-                  main (all tests passing)
+                  portfolio / project showcase
                 </span>
                 <span class="text-emerald-400 flex items-center gap-1">
                   <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
-                  Active
+                  Fresher
                 </span>
               </div>
             </div>
@@ -455,12 +570,13 @@
             <span>Interactive Machine Learning Simulator</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Live ML Widget: Dự Đoán Khách Hàng Rời Bỏ
+            Mô phỏng tương tác: Customer Churn
           </h2>
           <p class="text-slate-400 text-base sm:text-lg">
-            Thử nghiệm mô hình dự đoán xác suất <strong class="text-slate-200 font-semibold">Customer Churn</strong>
-            trong viễn thông / SaaS. Tương tác với các tham số đầu vào và quan sát phân tích giải thích đặc trưng (<span
-              class="text-cyan-400 font-mono">Feature Importance / SHAP</span>) được tính toán tức thì!
+            Thay đổi các thuộc tính khách hàng để quan sát điểm rủi ro được tính bằng quy tắc minh họa. Đây là <strong
+              class="text-amber-300 font-semibold">demo mô phỏng bằng JavaScript</strong>, không gọi mô hình đã huấn
+            luyện và không phải giá trị SHAP thực tế. Dùng để minh họa luồng tương tác, không dùng cho quyết định kinh
+            doanh.
           </p>
         </div>
 
@@ -484,7 +600,7 @@
             <!-- Model Selection Radio -->
             <div class="space-y-2">
               <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                1. Chọn Mô Hình Dự Đoán
+                1. Chọn Kịch Bản Minh Họa
               </label>
               <div class="grid grid-cols-3 gap-2">
                 <label class="cursor-pointer">
@@ -492,21 +608,21 @@
                     class="peer sr-only" />
                   <div
                     class="p-2.5 text-center rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-cyan-400 peer-checked:bg-cyan-500/10 peer-checked:text-cyan-400 text-slate-300 text-xs font-medium transition-all">
-                    XGBoost
+                    Kịch bản A
                   </div>
                 </label>
                 <label class="cursor-pointer">
                   <input type="radio" name="mlModel" value="rf" onchange="runMlInference()" class="peer sr-only" />
                   <div
                     class="p-2.5 text-center rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-cyan-400 peer-checked:bg-cyan-500/10 peer-checked:text-cyan-400 text-slate-300 text-xs font-medium transition-all">
-                    Random Forest
+                    Kịch bản B
                   </div>
                 </label>
                 <label class="cursor-pointer">
                   <input type="radio" name="mlModel" value="logreg" onchange="runMlInference()" class="peer sr-only" />
                   <div
                     class="p-2.5 text-center rounded-xl bg-slate-900 border border-slate-700 peer-checked:border-cyan-400 peer-checked:bg-cyan-500/10 peer-checked:text-cyan-400 text-slate-300 text-xs font-medium transition-all">
-                    Logistic Reg
+                    Kịch bản C
                   </div>
                 </label>
               </div>
@@ -632,16 +748,16 @@
                 <div
                   class="w-full sm:w-auto bg-dark-900/80 p-3.5 rounded-xl border border-slate-800 text-xs font-mono space-y-2">
                   <div class="flex justify-between items-center gap-4 text-slate-400">
-                    <span>Inference Time:</span>
-                    <span class="text-cyan-400 font-semibold" id="inferTimeText">1.2ms</span>
+                    <span>Chế độ tính:</span>
+                    <span class="text-cyan-400 font-semibold" id="inferTimeText">Demo rule-based</span>
                   </div>
                   <div class="flex justify-between items-center gap-4 text-slate-400">
-                    <span>Model F1-Score:</span>
-                    <span class="text-emerald-400 font-semibold">0.892</span>
+                    <span>Metric mô hình:</span>
+                    <span class="text-emerald-400 font-semibold">Chưa đo</span>
                   </div>
                   <div class="flex justify-between items-center gap-4 text-slate-400">
-                    <span>Explainability:</span>
-                    <span class="text-purple-400 font-semibold">TreeSHAP</span>
+                    <span>Giải thích:</span>
+                    <span class="text-purple-400 font-semibold">Minh họa</span>
                   </div>
                 </div>
               </div>
@@ -653,11 +769,11 @@
                 <div>
                   <h4 class="font-bold text-white text-base flex items-center gap-2">
                     <i data-lucide="bar-chart-2" class="w-4 h-4 text-cyan-400"></i>
-                    Đóng Góp Của Đặc Trưng (Local SHAP Values)
+                    Yếu Tố Trong Công Thức Minh Họa
                   </h4>
                   <p class="text-xs text-slate-400">
-                    Giải thích lý do mô hình đưa ra dự đoán trên: Giá trị dương đẩy tăng nguy cơ rời bỏ, giá trị âm giúp
-                    giữ chân.
+                    Giá trị dương làm tăng điểm rủi ro trong công thức demo; giá trị âm làm giảm điểm. Đây không phải
+                    SHAP từ mô hình đã huấn luyện.
                   </p>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
@@ -904,43 +1020,34 @@
           <div
             class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-medium">
             <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i>
-            <span>Verified GitHub Projects: lckhahn2904-cmd/IT</span>
+            <span>Dự án học thuật & thực hành · GitHub</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Dự Án Nghiên Cứu & Phát Triển Thực Tế
+            Dự Án Tiêu Biểu
           </h2>
           <p class="text-slate-400 text-base sm:text-lg">
-            Các dự án được thực hiện trong quá trình học tập và nghiên cứu chuyên sâu ngành Khoa học dữ liệu, lưu trữ
+            Các dự án được thực hiện trong quá trình học tập và thực hành ngành Khoa học dữ liệu, lưu trữ
             trực tiếp trên kho mã nguồn <a href="https://github.com/lckhahn2904-cmd/IT" target="_blank"
               rel="noopener noreferrer" class="text-cyan-400 underline font-mono">lckhahn2904-cmd/IT</a>.
           </p>
 
-          <!-- Filter Buttons -->
-          <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
-            <button onclick="filterProjects('all')"
-              class="project-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-white transition-all shadow-glow-cyan"
-              data-filter="all">
-              Tất cả (6)
+          <!-- Career-track filters -->
+          <div class="flex flex-wrap items-center justify-center gap-2 pt-4" role="group"
+            aria-label="Lọc dự án theo định hướng nghề nghiệp">
+            <button type="button" onclick="filterProjects('all')"
+              class="project-filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-white transition-all shadow-glow-cyan"
+              data-filter="all" aria-pressed="true">
+              Tất cả dự án (6)
             </button>
-            <button onclick="filterProjects('dl')"
-              class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
-              data-filter="dl">
-              Deep Learning & Thị Giác AI
+            <button type="button" onclick="filterProjects('bi')"
+              class="project-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
+              data-filter="bi" aria-pressed="false">
+              Data Analyst / BI Analyst
             </button>
-            <button onclick="filterProjects('ts')"
-              class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
-              data-filter="ts">
-              Chuỗi Thời Gian & Khí Tượng
-            </button>
-            <button onclick="filterProjects('ml')"
-              class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
-              data-filter="ml">
-              Machine Learning & Big Data
-            </button>
-            <button onclick="filterProjects('bi')"
-              class="project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
-              data-filter="bi">
-              Power BI & Phân Tích Kinh Doanh
+            <button type="button" onclick="filterProjects('ai')"
+              class="project-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all"
+              data-filter="ai" aria-pressed="false">
+              Data Scientist / AI Engineer
             </button>
           </div>
         </div>
@@ -951,7 +1058,7 @@
           <!-- PROJECT 1: YOLOv10 & Deep CNN Fruit & Vegetable (DL) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="dl">
+            data-track="ai">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1021,8 +1128,8 @@
                       <span>4. Business Impact</span>
                     </div>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                      Tự động hóa khâu quét mã và nhận diện nông sản tại quầy thu ngân tự phục vụ (Self-checkout) và
-                      băng chuyền phân loại kho hàng, giảm 70% thời gian cân đo thủ công.
+                      Định hướng ứng dụng: hỗ trợ nhận diện nông sản tại quầy tự phục vụ hoặc băng chuyền phân loại.
+                      Hiệu quả giảm thời gian thao tác cần được đo kiểm trong quy trình thực tế.
                     </p>
                   </div>
                 </div>
@@ -1099,7 +1206,7 @@
           <!-- PROJECT 2: LSTM Rainfall & Flood Risk in Central Vietnam (TS) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="ts">
+            data-track="ai bi">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1118,10 +1225,10 @@
 
                 <div>
                   <h3 class="text-2xl font-bold text-white tracking-tight hover:text-cyan-400 transition-colors">
-                    Dự Báo Lượng Mưa & Nguy Cơ Lũ Lụt Miền Trung Việt Nam Bằng Mạng LSTM
+                    Dự Báo Lượng Mưa Theo Chuỗi Thời Gian Bằng Mạng LSTM
                   </h3>
-                  <p class="text-sm text-slate-400 mt-1">Time Series Rainfall Forecasting & Flood Risk Modeling in
-                    Central Vietnam with Long Short-Term Memory Networks</p>
+                  <p class="text-sm text-slate-400 mt-1">Time Series Rainfall Forecasting with Long Short-Term Memory
+                    Networks</p>
                 </div>
 
                 <!-- 4 Steps Breakdown -->
@@ -1250,7 +1357,7 @@
           <!-- PROJECT 3: Stroke Risk Prediction (ML) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="ml">
+            data-track="ai">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1400,7 +1507,7 @@
           <!-- PROJECT 4: Earthquake Time Series ARIMA & Prophet (TS) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="ts">
+            data-track="ai bi">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1549,7 +1656,7 @@
           <!-- PROJECT 5: Apache Spark Big Data Water Consumption (ML) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="ml">
+            data-track="ai bi">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1620,8 +1727,8 @@
                       <span>4. Infrastructure Impact</span>
                     </div>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                      Giúp nhà máy cấp nước chủ động điều hòa áp lực đường ống, giảm 12% điện năng bơm nước vào giờ cao
-                      điểm và hạn chế rủi ro vỡ đường ống do quá áp.
+                      Định hướng ứng dụng: hỗ trợ phân tích nhu cầu tiêu thụ nước và lập kế hoạch vận hành. Mức tiết
+                      kiệm năng lượng cần được xác minh bằng thử nghiệm hoặc dữ liệu vận hành thực tế.
                     </p>
                   </div>
                 </div>
@@ -1698,7 +1805,7 @@
           <!-- PROJECT 6: Inditex Commercial Business Power BI (BI) -->
           <div
             class="project-item glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all p-6 sm:p-8"
-            data-category="bi">
+            data-track="bi">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div class="lg:col-span-8 space-y-6">
                 <div class="flex flex-wrap items-center gap-2">
@@ -1717,7 +1824,7 @@
 
                 <div>
                   <h3 class="text-2xl font-bold text-white tracking-tight hover:text-amber-400 transition-colors">
-                    Dashboard Power BI: Phân Tích Kết Quả Hoạt Động Kinh Doanh Tập Đoàn Inditex
+                    Power BI Dashboard: Phân Tích Dữ Liệu Kinh Doanh Inditex
                   </h3>
                   <p class="text-sm text-slate-400 mt-1">Commercial Business Performance & Executive BI Dashboard for
                     Inditex Group (Zara, Pull&Bear, Massimo Dutti)</p>
@@ -1832,7 +1939,7 @@
                 </div>
 
                 <div class="pt-4 border-t border-slate-800 flex flex-col gap-2.5">
-                  <a href="https://github.com/lckhahn2904-cmd/IT/tree/main/PowerBI_K%E1%BA%BET%20QU%E1%BA%A2%20HO%E1%BA%A0T%20%C4%90%E1%BB%98NG%20KINH%20DOANH%20TH%C6%AF%C6%A1NG%20M%E1%BA%A0I%20T%E1%BA%A0I%20T%E1%BA%ACP%20%C4%90O%C3%80N%20C%C3%94NG%20TY%20INDITEX"
+                  <a href="https://github.com/lckhahn2904-cmd/IT/tree/4518737cd5b1c0eca3463f70c586fe93ca433c98/PowerBI_K%E1%BA%BET%20QU%E1%BA%A2%20HO%E1%BA%A0T%20%C4%90%E1%BB%98NG%20KINH%20DOANH%20TH%C6%AF%C6%A0NG%20M%E1%BA%A0I%20T%E1%BA%A0I%20T%E1%BA%ACP%20%C4%90O%C3%80N%20C%C3%94NG%20TY%20INDITEX"
                     target="_blank" rel="noopener noreferrer"
                     class="w-full py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium flex items-center justify-center gap-2 transition-colors">
                     <i data-lucide="github" class="w-4 h-4"></i>
@@ -1894,7 +2001,10 @@
               class="p-4 rounded-xl glass-card border border-slate-800 hover:border-purple-500/40 transition-all flex items-center gap-4 group">
               <div
                 class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                <i data-lucide="github" class="w-5 h-5"></i>
+                <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                </svg>
               </div>
               <div>
                 <span class="text-xs text-slate-500 font-mono block">Kho Mã Nguồn Dự Án (GitHub)</span>
@@ -1962,7 +2072,7 @@
             <button type="submit" id="btnSubmitContact"
               class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-glow-cyan transition-all flex items-center justify-center gap-2">
               <i data-lucide="send" class="w-4 h-4"></i>
-              <span>Gửi Tin Nhắn Ngay</span>
+              <span>Mở Email Để Gửi</span>
             </button>
           </form>
         </div>
@@ -2001,18 +2111,13 @@
       <div class="no-print bg-dark-950 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <i data-lucide="file-check" class="w-5 h-5 text-cyan-400"></i>
-          <h3 class="font-bold text-white text-base">Xem Trước Sơ Yếu Lý Lịch (Curriculum Vitae)</h3>
+          <h3 class="font-bold text-white text-base">Hồ sơ năng lực</h3>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="printCv()"
             class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors">
             <i data-lucide="printer" class="w-3.5 h-3.5 text-cyan-400"></i>
-            <span>In / Xuất PDF</span>
-          </button>
-          <button onclick="downloadCvDoc()"
-            class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-xs font-medium text-white flex items-center gap-1.5 transition-all">
-            <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>Tải file</span>
+            <span>In / Lưu PDF</span>
           </button>
           <button onclick="closeCvModal()"
             class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
@@ -2021,160 +2126,136 @@
         </div>
       </div>
 
-      <!-- Modal Body (The CV Document) -->
-      <div id="cvModalContent"
-        class="p-6 sm:p-10 text-slate-300 space-y-8 bg-dark-900 max-h-[80vh] overflow-y-auto font-sans leading-relaxed">
-
-        <!-- CV Header -->
-        <div class="border-b border-slate-800 pb-6 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-          <div>
-            <h1 class="text-3xl font-extrabold text-white tracking-tight">LÊ CHÍ KHA</h1>
-            <p class="text-cyan-400 font-semibold text-base mt-1">Data Science Intern / AI Engineer Fresher</p>
-            <p class="text-xs text-slate-400 font-mono mt-0.5">MSSV: 2200002544 • Lớp: 22DTH4D</p>
-          </div>
-          <div class="text-xs text-slate-400 space-y-1 font-mono sm:text-right">
-            <div><i data-lucide="mail" class="w-3.5 h-3.5 inline mr-1 text-cyan-400"></i> lechikha.hn0209@gmail.com
-            </div>
-            <div><i data-lucide="github" class="w-3.5 h-3.5 inline mr-1 text-purple-400"></i>
-              github.com/lckhahn2904-cmd/IT</div>
-            <div><i data-lucide="map-pin" class="w-3.5 h-3.5 inline mr-1 text-emerald-400"></i> TP. Hồ Chí Minh, Việt
-              Nam</div>
-          </div>
+      <!-- Modal Body: only the four requested CV sections -->
+      <div id="cvModalContent" class="p-6 sm:p-8 bg-white text-slate-900 space-y-8">
+        <!-- START: CV - THÔNG TIN CHUNG & TIÊU ĐỀ -->
+        <div class="border-b-2 border-slate-800 pb-4">
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-wide text-slate-900">LÊ CHÍ KHA</h2>
+          <p class="mt-1 text-sm text-slate-600">IT · MARKETING · AUTOMATION</p>
         </div>
+        <!-- END: CV - THÔNG TIN CHUNG & TIÊU ĐỀ -->
 
-        <!-- Section 1: Objective -->
-        <div class="space-y-2">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-            <span>Mục Tiêu Nghề Nghiệp</span>
-            <span class="flex-1 h-[1px] bg-slate-800"></span>
-          </h4>
-          <p class="text-xs sm:text-sm text-slate-300">
-            Sinh viên chuyên ngành Khoa học dữ liệu mong muốn gia nhập đội ngũ Data Science & AI của doanh nghiệp với vị
-            trí Thực tập sinh / Fresher. Mục tiêu áp dụng tư duy thống kê, kinh nghiệm xây dựng mô hình Deep Learning
-            (YOLOv10, CNN, LSTM) và kỹ thuật phân tích dữ liệu phân tán (Spark, Power BI) vào bài toán thực tiễn để kiến
-            tạo giá trị kinh doanh đột phá.
-          </p>
-        </div>
+        <!-- START: CV - GIỚI THIỆU BẢN THÂN -->
+        <section>
+          <h3 class="text-lg font-extrabold uppercase tracking-wide border-b border-slate-300 pb-2 mb-4">Giới thiệu bản
+            thân</h3>
+          <div class="text-sm leading-relaxed">
+            <p>Tốt nghiệp ngành Công nghệ thông tin, chuyên ngành Khoa học dữ liệu tại Trường Đại học Nguyễn Tất Thành
+              với GPA 3.3/4.0, tôi mong muốn phát triển sự nghiệp trong lĩnh vực công nghệ thông tin và dữ liệu. Có kiến
+              thức nền tảng về Python, SQL, Power BI và n8n, tôi định hướng vận dụng kỹ năng lập trình, phân tích dữ
+              liệu và tự động hóa quy trình vào các công việc thực tế. Với tư duy logic, tinh thần chủ động học hỏi và
+              khả năng tiếp thu công nghệ mới, tôi sẵn sàng thích nghi với môi trường làm việc chuyên nghiệp, từng bước
+              nâng cao năng lực chuyên môn và tích lũy kinh nghiệm thực tế. Tôi mong muốn đóng góp vào việc cải thiện
+              hiệu quả công việc, hỗ trợ xử lý dữ liệu và phát triển các giải pháp công nghệ phù hợp với nhu cầu của
+              doanh nghiệp.</p>
+          </div>
+        </section>
+        <!-- END: CV - GIỚI THIỆU BẢN THÂN -->
 
-        <!-- Section 2: Education -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-            <span>Học Vấn & Chuyên Ngành</span>
-            <span class="flex-1 h-[1px] bg-slate-800"></span>
-          </h4>
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+        <!-- START: CV - KINH NGHIỆM LÀM VIỆC -->
+        <section>
+          <h3 class="text-lg font-extrabold uppercase tracking-wide border-b border-slate-300 pb-2 mb-4">Kinh nghiệm làm
+            việc</h3>
+          <div class="space-y-5 text-sm leading-relaxed">
+            <article>
+              <h4 class="font-bold">CÔNG TY TNHH GIẢI PHÁP CÔNG NGHỆ PHẦN MỀM GNN</h4>
+              <p class="italic text-slate-600 mb-2">Thực tập sinh Data Analyst | 10/2025 – 12/2025</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Dẫn dắt nhóm 6 thành viên xây dựng mô hình dự báo thời tiết ngắn hạn từ dữ liệu khí tượng.</li>
+                <li>Xây dựng hệ thống Python thu thập và xử lý 345.177 dòng dữ liệu thời tiết từ 63 tỉnh/thành.</li>
+                <li>Làm sạch, mapping và chuẩn hóa dữ liệu đa nguồn bằng Z-score và Min-Max.</li>
+                <li>Phát triển, đánh giá mô hình LSTM và ARIMA; LSTM cho kết quả tốt nhất trong dự án.</li>
+                <li>Xây dựng Power BI Dashboard trực quan hóa lượng mưa và nhiệt độ theo thời gian; phát triển web demo
+                  bằng React.</li>
+              </ul>
+            </article>
+            <article>
+              <h4 class="font-bold">CÔNG TY CỔ PHẦN CÔNG NGHỆ & TIẾP THỊ AIKING</h4>
+              <p class="italic text-slate-600 mb-2">Digital Marketing AI | 05/2026 – 06/2026</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Nghiên cứu thông tin và thế mạnh của doanh nghiệp khách hàng để hỗ trợ định hướng nội dung và tư vấn
+                  phù hợp.</li>
+                <li>Lên ý tưởng content về AI Agent, prompt trend và video AI để phát triển 4 group Zalo, thu hút 150
+                  thành viên sau 2 tuần (KPI: 300).</li>
+                <li>Xây dựng ý tưởng content cho workshop AI Agent và triển khai seeding Facebook, thu hút 50 người đăng
+                  ký (KPI: 80).</li>
+                <li>Sử dụng AI sản xuất 5 video quảng cáo dài 10–40 giây, kết hợp nhạc và lời thoại.</li>
+                <li>Cắt ghép, chỉnh sửa 20 video bằng CapCut để đăng tải trên fanpage.</li>
+                <li>Nghiên cứu ChatGPT, Gemini, Claude, Google Flow và các giải pháp AI Agent; xây dựng prompt tạo
+                  poster, banner và hình ảnh thương hiệu.</li>
+              </ul>
+            </article>
+            <article>
+              <h4 class="font-bold">CÔNG TY CỔ PHẦN CÔNG NGHỆ DATALYTIS</h4>
+              <p class="italic text-slate-600 mb-2">Thực tập sinh Marketing Automation | 10/2025 – 02/2026</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Thiết kế, chỉnh sửa workflow tự động bằng n8n để thu thập, xử lý và hỗ trợ đăng nội dung lên
+                  fanpage/website, giúp giảm 50% thao tác thủ công.</li>
+                <li>Quản lý, vận hành 5 website dạng báo điện tử, tùy chỉnh giao diện UI/UX và đăng khoảng 5 bài/ngày;
+                  mỗi bài ghi nhận khoảng 10–20 lượt đọc và kiểm tra website hằng tuần.</li>
+                <li>Xây dựng, phát triển 10 fanpage Facebook; đăng tải và quản lý nội dung, ghi nhận khoảng 15–50 lượt
+                  xem mỗi fanpage và kiểm tra hiệu quả hằng tuần.</li>
+                <li>Thu thập khoảng 30 nội dung viral/trend mỗi ngày từ TikTok để hỗ trợ phát triển nội dung.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <!-- END: CV - KINH NGHIỆM LÀM VIỆC -->
+
+        <!-- START: CV - HỌC VẤN -->
+        <section>
+          <h3 class="text-lg font-extrabold uppercase tracking-wide border-b border-slate-300 pb-2 mb-4">Học vấn</h3>
+          <div class="text-sm leading-relaxed">
+            <p class="font-bold">TRƯỜNG ĐẠI HỌC NGUYỄN TẤT THÀNH</p>
+            <p class="text-slate-600">2022 – 2026</p>
+            <p>Ngành: Công nghệ Thông tin</p>
+            <p>Chuyên ngành: Khoa học Dữ liệu</p>
+            <p>GPA: 3,3/4</p>
+          </div>
+        </section>
+        <!-- END: CV - HỌC VẤN -->
+
+        <!-- START: CV - KỸ NĂNG -->
+        <section>
+          <h3 class="text-lg font-extrabold uppercase tracking-wide border-b border-slate-300 pb-2 mb-4">Kỹ năng</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
             <div>
-              <div class="text-sm font-bold text-white">Cử Nhân Khoa Học Dữ Liệu (Data Science)</div>
-              <div class="text-xs text-slate-400">Các học phần chuyên sâu: Deep Learning, Machine Learning & Ứng dụng,
-                Phân tích dữ liệu chuỗi thời gian, Dữ liệu lớn (Big Data), Trực quan hóa dữ liệu, Chuyên đề cơ sở KHDL.
-              </div>
+              <h4 class="font-bold mb-2">Digital Marketing</h4>
+              <p>Content Marketing · Social Media · Community Marketing · Seeding · Video Content</p>
             </div>
-            <div class="text-xs font-mono text-cyan-400 sm:text-right mt-1 sm:mt-0">
-              Dự kiến tốt nghiệp: 2026
+            <div>
+              <h4 class="font-bold mb-2">AI & Content Creation</h4>
+              <p>ChatGPT · Google Gemini · Claude · Prompt Engineering · AI Video</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Section 3: Core Skills -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-            <span>Kỹ Năng Kỹ Thuật (Technical Skills)</span>
-            <span class="flex-1 h-[1px] bg-slate-800"></span>
-          </h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800">
-              <span class="font-bold text-slate-200">Ngôn ngữ & Thư viện AI:</span>
-              <p class="text-slate-400 mt-0.5">Python, PyTorch, YOLOv10, TensorFlow/Keras, Scikit-learn, H2O.ai, OpenCV,
-                Albumentations.</p>
+            <div>
+              <h4 class="font-bold mb-2">Data Analytics</h4>
+              <p>Python · Power BI · Excel · Phân tích và trực quan hóa dữ liệu</p>
             </div>
-            <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800">
-              <span class="font-bold text-slate-200">Chuỗi thời gian & Thống kê:</span>
-              <p class="text-slate-400 mt-0.5">LSTM, Facebook Prophet, ARIMA/SARIMA, ADF Stationarity Test, Statsmodels,
-                Time Series EDA.</p>
+            <div>
+              <h4 class="font-bold mb-2">Marketing Automation</h4>
+              <p>n8n · Make · Workflow Automation</p>
             </div>
-            <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800">
-              <span class="font-bold text-slate-200">Dữ liệu lớn & Cơ sở dữ liệu:</span>
-              <p class="text-slate-400 mt-0.5">Apache Spark (PySpark, MLlib), PostgreSQL, MySQL, Star Schema,
-                VectorAssembler.</p>
+            <div>
+              <h4 class="font-bold mb-2">Thiết kế & Video</h4>
+              <p>Canva · CapCut · Thiết kế poster/banner cơ bản · Đam mê vẽ</p>
             </div>
-            <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800">
-              <span class="font-bold text-slate-200">Trực quan hóa & BI:</span>
-              <p class="text-slate-400 mt-0.5">Power BI (DAX, Power Query), Matplotlib, Seaborn, Grad-CAM Saliency Maps,
-                Git/GitHub.</p>
+            <div>
+              <h4 class="font-bold mb-2">Kỹ năng mềm</h4>
+              <p>Tư duy phân tích · Giải quyết vấn đề · Làm việc nhóm · Quản lý thời gian · Tư duy phát triển</p>
             </div>
           </div>
-        </div>
+        </section>
+        <!-- END: CV - KỸ NĂNG -->
 
-        <!-- Section 4: Real Projects from GitHub IT -->
-        <div class="space-y-4">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-            <span>Các Dự Án Tiêu Biểu Trong Repository GitHub IT</span>
-            <span class="flex-1 h-[1px] bg-slate-800"></span>
-          </h4>
-
-          <div class="space-y-3 text-xs">
-            <div class="border-l-2 border-purple-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">1. YOLOv10 & Deep CNN: Nhận Diện Trái Cây & Rau Củ
-                  (Grad-CAM XAI)</span>
-                <span class="font-mono text-slate-500">Deep Learning</span>
-              </div>
-              <p class="text-slate-400">Xây dựng mô hình CNN và YOLOv10 trên tập dữ liệu nông sản tổng hợp; áp dụng Data
-                Augmentation và bản đồ nhiệt Grad-CAM giải thích đặc trưng nhận diện.</p>
-            </div>
-
-            <div class="border-l-2 border-cyan-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">2. Dự Báo Lượng Mưa & Nguy Cơ Lũ Lụt Miền Trung Bằng Mạng
-                  LSTM</span>
-                <span class="font-mono text-slate-500">Time Series</span>
-              </div>
-              <p class="text-slate-400">Xử lý chuỗi thời gian khí tượng thực tế trạm thủy văn miền Trung; huấn luyện mô
-                hình LSTM với kỹ thuật Sliding Window để dự báo trước 24-48h.</p>
-            </div>
-
-            <div class="border-l-2 border-rose-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">3. Dự Đoán Nguy Cơ Đột Quỵ Bằng H2O Gradient Boosting
-                  Machine</span>
-                <span class="font-mono text-slate-500">Machine Learning</span>
-              </div>
-              <p class="text-slate-400">Khai phá hồ sơ bệnh án 5,110 bệnh nhân; phát hiện tương quan nhóm khuyết thiếu
-                BMI, huấn luyện H2O GBM với 5-Fold Cross Validation và tối ưu ngưỡng phân loại.</p>
-            </div>
-
-            <div class="border-l-2 border-amber-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">4. Dự Báo Số Lượng & Cường Độ Động Đất Toàn Cầu Bằng
-                  ARIMA & Prophet</span>
-                <span class="font-mono text-slate-500">Chuỗi Thời Gian</span>
-              </div>
-              <p class="text-slate-400">Phân tích dữ liệu địa chấn toàn cầu 28 năm (1995-2023), kiểm định tính dừng ADF,
-                so sánh hiệu năng giữa mô hình thống kê ARIMA và Facebook Prophet.</p>
-            </div>
-
-            <div class="border-l-2 border-blue-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">5. Dự Đoán Tiêu Thụ Nước Sinh Hoạt Với Apache Spark
-                  MLlib</span>
-                <span class="font-mono text-slate-500">Big Data</span>
-              </div>
-              <p class="text-slate-400">Xây dựng pipeline phân tán trên Spark DataFrame xử lý dữ liệu thời tiết và sản
-                lượng nước, huấn luyện GBTRegressor điều phối áp lực mạng lưới cấp nước.</p>
-            </div>
-
-            <div class="border-l-2 border-emerald-400 pl-3 space-y-1">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-200 text-sm">6. Power BI Dashboard: Hoạt Động Kinh Doanh Thương Mại
-                  Tập Đoàn Inditex</span>
-                <span class="font-mono text-slate-500">Business Intelligence</span>
-              </div>
-              <p class="text-slate-400">Thiết kế mô hình dữ liệu Star Schema, viết DAX measures tính toán doanh thu YoY,
-                tỷ suất lợi nhuận và thị phần các thương hiệu Zara, Pull&Bear...</p>
-            </div>
+        <!-- START: CV - CHỨNG CHỈ -->
+        <section>
+          <h3 class="text-lg font-extrabold uppercase tracking-wide border-b border-slate-300 pb-2 mb-4">Chứng chỉ</h3>
+          <div class="text-sm">
+            <p class="font-bold">Gemini Certified Student</p>
+            <p class="text-slate-600">2026 – 2029</p>
           </div>
-        </div>
-
+        </section>
+        <!-- END: CV - CHỨNG CHỈ -->
       </div>
 
       <!-- Modal Footer (no-print) -->
@@ -2186,7 +2267,7 @@
         <button onclick="downloadCvDoc()"
           class="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-glow-cyan flex items-center gap-1.5 transition-all">
           <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Tải File Sơ Yếu Lý Lịch</span>
+          <span>In / Lưu hồ sơ PDF</span>
         </button>
       </div>
 
@@ -2252,11 +2333,11 @@
     }
 
     // ==================== ML PLAYGROUND LOGIC ====================
-    let shapChartInstance = null;
+    let demoChartInstance = null;
 
     function initMlPlayground() {
       const ctx = document.getElementById('shapChart').getContext('2d');
-      shapChartInstance = new Chart(ctx, {
+      demoChartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
           labels: ['Loại hợp đồng', 'Số vé kỹ thuật', 'Cước hàng tháng', 'Thời gian gắn bó', 'Bảo mật Online'],
@@ -2284,7 +2365,7 @@
               callbacks: {
                 label: function (context) {
                   const val = context.raw;
-                  return (val > 0 ? '+' : '') + val.toFixed(2) + ' (SHAP Impact)';
+                  return (val > 0 ? '+' : '') + val.toFixed(2) + ' (Demo impact)';
                 }
               }
             }
@@ -2329,16 +2410,13 @@
       const securityEffect = security ? -0.35 : 0.20;
 
       let modelFactor = 1.0;
-      let latency = '1.2ms';
+      const demoModeLabel = 'Demo rule-based';
       if (model === 'xgboost') {
         modelFactor = tickets >= 5 ? 1.15 : 0.98;
-        latency = '0.9ms';
       } else if (model === 'rf') {
         modelFactor = 0.95;
-        latency = '1.6ms';
       } else {
         modelFactor = 0.90;
-        latency = '0.3ms';
       }
 
       logOdds = (logOdds + tenureEffect + chargeEffect + ticketsEffect + contractEffect + securityEffect) * modelFactor;
@@ -2349,7 +2427,7 @@
       const probPercent = Math.round(prob * 100);
 
       document.getElementById('churnPercentText').textContent = `${probPercent}%`;
-      document.getElementById('inferTimeText').textContent = latency;
+      document.getElementById('inferTimeText').textContent = demoModeLabel;
 
       const circumference = 264;
       const strokeDashoffset = circumference - (circumference * probPercent / 100);
@@ -2378,8 +2456,8 @@
 
       lucide.createIcons();
 
-      if (shapChartInstance) {
-        const shapValues = [
+      if (demoChartInstance) {
+        const demoValues = [
           parseFloat(contractEffect.toFixed(2)),
           parseFloat(ticketsEffect.toFixed(2)),
           parseFloat(chargeEffect.toFixed(2)),
@@ -2387,11 +2465,11 @@
           parseFloat(securityEffect.toFixed(2)),
         ];
 
-        const bgColors = shapValues.map(v => v >= 0 ? 'rgba(244, 63, 94, 0.85)' : 'rgba(16, 185, 129, 0.85)');
+        const bgColors = demoValues.map(v => v >= 0 ? 'rgba(244, 63, 94, 0.85)' : 'rgba(16, 185, 129, 0.85)');
 
-        shapChartInstance.data.datasets[0].data = shapValues;
-        shapChartInstance.data.datasets[0].backgroundColor = bgColors;
-        shapChartInstance.update();
+        demoChartInstance.data.datasets[0].data = demoValues;
+        demoChartInstance.data.datasets[0].backgroundColor = bgColors;
+        demoChartInstance.update();
       }
     }
 
@@ -2412,20 +2490,17 @@
       const buttons = document.querySelectorAll('.project-filter-btn');
 
       buttons.forEach(btn => {
-        if (btn.getAttribute('data-filter') === category) {
-          btn.className = "project-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-white transition-all shadow-glow-cyan";
-        } else {
-          btn.className = "project-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all";
-        }
+        const isActive = btn.getAttribute('data-filter') === category;
+        btn.setAttribute('aria-pressed', String(isActive));
+        btn.className = isActive
+          ? "project-filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-white transition-all shadow-glow-cyan"
+          : "project-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all";
       });
 
       items.forEach(item => {
-        const itemCat = item.getAttribute('data-category');
-        if (category === 'all' || itemCat === category) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
+        const tracks = (item.getAttribute('data-track') || '').split(/\s+/).filter(Boolean);
+        const shouldShow = category === 'all' || tracks.includes(category);
+        item.classList.toggle('hidden', !shouldShow);
       });
     }
 
@@ -2448,7 +2523,7 @@
             <ul class="list-disc pl-5 text-xs text-slate-400 space-y-1">
               <li>Trích xuất gradient kích hoạt tại tầng Convolutional cuối cùng của mạng nơ-ron để vẽ bản đồ nhiệt trực quan (Heatmap).</li>
               <li>Giúp chứng minh mô hình tập trung vào đúng các đường vân vỏ, cuống quả và màu sắc đặc trưng thay vì nhận diện sai lệch dựa trên nền ảnh (Background noise).</li>
-              <li>Hồ sơ đính kèm trong repository: <code>DoAn_KPDL.ipynb</code>, <code>2200002544_LeChiKha_Deeplearning.pdf</code>, <code>BaoCao.pptx</code>.</li>
+              <li>Hồ sơ đính kèm trong repository: <code>DoAn_KPDL.ipynb</code>, <code>báo cáo PDF</code>, <code>BaoCao.pptx</code>.</li>
             </ul>
           </div>
         `
@@ -2469,7 +2544,7 @@
               <li><strong>Forget Gate:</strong> Quyết định lượng thông tin thời tiết quá khứ cần loại bỏ.</li>
               <li><strong>Input Gate:</strong> Cập nhật trạng thái tế bào với các biến số khí tượng mới (nhiệt độ, độ ẩm).</li>
               <li><strong>Output Gate:</strong> Dự báo chính xác lượng mưa đo đếm theo mili-mét trong các bước thời gian tiếp theo.</li>
-              <li>Hồ sơ đính kèm trong repository: <code>rainfall_prediction.ipynb</code>, <code>2200002544_LeChiKha_DACNKHDL.pdf</code>, sơ đồ cấu trúc chi tiết tế bào LSTM.</li>
+              <li>Hồ sơ đính kèm trong repository: <code>rainfall_prediction.ipynb</code>, <code>báo cáo PDF</code>, sơ đồ cấu trúc chi tiết tế bào LSTM.</li>
             </ul>
           </div>
         `
@@ -2491,7 +2566,7 @@
             <ul class="list-disc pl-5 text-xs text-slate-400 space-y-1">
               <li>Trong y tế, chi phí của việc bỏ sót bệnh nhân (False Negative) là sinh mạng con người. Do đó, ngưỡng xác suất cắt (Threshold) được điều chỉnh giảm từ 0.5 xuống ngưỡng tối ưu hóa Recall.</li>
               <li>Đánh giá qua hàm <code>model_performance</code> và biểu đồ phân phối xác suất dự đoán trên tập Test.</li>
-              <li>Hồ sơ đính kèm: <code>Stroke Prediction.ipynb</code>, <code>2200002544_LeChiKha_CNKHDL.pdf</code>.</li>
+              <li>Hồ sơ đính kèm: <code>Stroke Prediction.ipynb</code>, <code>báo cáo PDF</code>.</li>
             </ul>
           </div>
         `
@@ -2510,7 +2585,7 @@
             <ul class="list-disc pl-5 text-xs text-slate-400 space-y-1">
               <li><strong>Kiểm định ADF:</strong> Đảm bảo chuỗi thời gian số vụ động đất đạt tính dừng (stationary) trước khi đưa vào mô hình hóa ARIMA.</li>
               <li><strong>Facebook Prophet:</strong> Mô hình phân rã chuỗi thời gian thành: y(t) = g(t) + s(t) + h(t) + ε_t (xu hướng phi tuyến, tính mùa vụ và hiệu ứng bất thường).</li>
-              <li>Hồ sơ đính kèm: <code>Global Earthquake Dataset.ipynb</code>, <code>2200002544_LeChiKha_PTDLCTG&UD.pdf</code>.</li>
+              <li>Hồ sơ đính kèm: <code>Global Earthquake Dataset.ipynb</code>, <code>báo cáo PDF</code>.</li>
             </ul>
           </div>
         `
@@ -2530,14 +2605,14 @@
               <strong>Mô hình hồi quy phân tán (GBTRegressor):</strong> Huấn luyện cây quyết định tăng cường gradient phân tán, đánh giá chỉ số RMSE và R-squared trên tập kiểm thử thời gian thực.
             </p>
             <p class="text-xs text-slate-400">
-              Hồ sơ đính kèm: <code>Water_Consumption_Prediction.ipynb</code>, <code>2200002544_LeChiKha_DLL.pdf</code>.
+              Hồ sơ đính kèm: <code>Water_Consumption_Prediction.ipynb</code>, <code>báo cáo PDF</code>.
             </p>
           </div>
         `
       },
       6: {
         title: "Kiến trúc Kỹ thuật: Power BI Business Intelligence Tập Đoàn Inditex",
-        githubUrl: "https://github.com/lckhahn2904-cmd/IT/tree/main/PowerBI_K%E1%BA%BET%20QU%E1%BA%A2%20HO%E1%BA%A0T%20%C4%90%E1%BB%98NG%20KINH%20DOANH%20TH%C6%AF%C6%A1NG%20M%E1%BA%A0I%20T%E1%BA%A0I%20T%E1%BA%ACP%20%C4%90O%C3%80N%20C%C3%94NG%20TY%20INDITEX",
+        githubUrl: "https://github.com/lckhahn2904-cmd/IT/tree/4518737cd5b1c0eca3463f70c586fe93ca433c98/PowerBI_K%E1%BA%BET%20QU%E1%BA%A2%20HO%E1%BA%A0T%20%C4%90%E1%BB%98NG%20KINH%20DOANH%20TH%C6%AF%C6%A0NG%20M%E1%BA%A0I%20T%E1%BA%A0I%20T%E1%BA%ACP%20%C4%90O%C3%80N%20C%C3%94NG%20TY%20INDITEX",
         content: `
           <div class="space-y-4">
             <div class="p-3 bg-dark-950 rounded-xl border border-slate-800 font-mono text-xs text-amber-300">
@@ -2552,7 +2627,7 @@
             <ul class="list-disc pl-5 text-xs text-slate-400 space-y-1">
               <li>Tính toán tăng trưởng doanh số theo thời gian (Time Intelligence: YTD, YoY Growth).</li>
               <li>Phân tích đóng góp biên lợi nhuận ròng của từng nhãn hàng thành viên.</li>
-              <li>Hồ sơ đính kèm: <code>Company_business.pbix</code>, <code>CDCSKHDL2.pptx</code>, <code>2200002544_LeChiKha_CDCSKHDL2.pdf</code>.</li>
+              <li>Hồ sơ đính kèm: <code>Company_business.pbix</code>, <code>CDCSKHDL2.pptx</code>, <code>báo cáo PDF</code>.</li>
             </ul>
           </div>
         `
@@ -2572,7 +2647,9 @@
       document.getElementById('projectModal').classList.add('hidden');
     }
 
-    // ==================== CV MODAL LOGIC ====================
+    // ==================== CV MODAL & PRINT LOGIC ====================
+    let isCvModalOriginallyOpen = false;
+
     function openCvModal() {
       document.getElementById('cvModal').classList.remove('hidden');
     }
@@ -2582,49 +2659,55 @@
     }
 
     function printCv() {
+      const cvModal = document.getElementById('cvModal');
+      if (cvModal) cvModal.classList.remove('hidden');
       window.print();
     }
 
     function downloadCvDoc() {
-      // Trigger festive confetti
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
-      showToast("Đang chuẩn bị bản PDF Sơ yếu lý lịch của Lê Chí Kha...", "success");
+      const cvModal = document.getElementById('cvModal');
+      if (cvModal) cvModal.classList.remove('hidden');
+      showToast("Hộp thoại in đang mở; chọn mục 'Lưu dưới dạng PDF' (Save as PDF).", "success");
       setTimeout(() => {
         window.print();
-      }, 500);
+      }, 300);
     }
 
-    // ==================== CONTACT FORM & TOAST = REPLACE WITH REALISTIC FEEDBACK ====================
+    // Đảm bảo chế độ in luôn sẵn sàng hiển thị nội dung CV và tự động khôi phục sau khi in
+    window.addEventListener('beforeprint', () => {
+      const cvModal = document.getElementById('cvModal');
+      if (cvModal) {
+        isCvModalOriginallyOpen = !cvModal.classList.contains('hidden');
+        cvModal.classList.remove('hidden');
+      }
+    });
+
+    window.addEventListener('afterprint', () => {
+      const cvModal = document.getElementById('cvModal');
+      if (cvModal && !isCvModalOriginallyOpen) {
+        cvModal.classList.add('hidden');
+      }
+    });
+
+    // Contact form: open a prefilled email draft; no backend is configured.
     function handleContactSubmit(event) {
       event.preventDefault();
-      const btn = document.getElementById('btnSubmitContact');
-      const originalText = btn.innerHTML;
 
-      btn.disabled = true;
-      btn.innerHTML = `<span class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span> <span>Đang gửi thông tin...</span>`;
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail')?.value.trim() || '';
+      const message = document.getElementById('senderMessage').value.trim();
 
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-        document.getElementById('contactForm').reset();
+      if (!name || !message) {
+        showToast("Vui lòng nhập họ tên và nội dung tin nhắn.", "error");
+        return;
+      }
 
-        // Confetti effect
-        if (typeof confetti === 'function') {
-          confetti({
-            particleCount: 100,
-            spread: 80,
-            origin: { y: 0.6 }
-          });
-        }
-
-        showToast("Cảm ơn bạn! Tin nhắn đã được gửi thành công đến Lê Chí Kha. Tôi sẽ phản hồi sớm nhất có thể.", "success");
-      }, 1000);
+      const subject = encodeURIComponent(`Liên hệ Portfolio từ ${name}`);
+      const body = encodeURIComponent(
+        `Người liên hệ: ${name}\nEmail: ${email || 'Chưa cung cấp'}\n\nNội dung:\n${message}`
+      );
+      showToast("Đang mở ứng dụng email để bạn gửi tin nhắn. Website chưa tự gửi dữ liệu.", "success");
+      window.location.href = `mailto:lechikha.hn0209@gmail.com?subject=${subject}&body=${body}`;
     }
 
     function showToast(message, type = "success") {
